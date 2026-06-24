@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snehil Bajaj | 2D/3D Animator & Visual Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        
+        :root {
+            --primary: #a3e635;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .portfolio-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+	/* Add this inside the <style> tag */
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-lime-400 rounded-full flex items-center justify-center text-black font-bold text-xl">SB</div>
+                <span class="heading-font text-2xl font-semibold tracking-tight">SB.Portfolio</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest">
+                <a href="#about" class="nav-link hover:text-lime-400 transition-colors">About</a>
+                <a href="#portfolio" class="nav-link hover:text-lime-400 transition-colors">Portfolio</a>
+                <a href="#clients" class="nav-link hover:text-lime-400 transition-colors">Clients</a>
+                <a href="#career" class="nav-link hover:text-lime-400 transition-colors">Career</a>
+                <a href="#contact" class="nav-link hover:text-lime-400 transition-colors">Contact</a>
+            </nav>
+            
+            <a href="https://wa.me/916388114814" target="_blank"
+               class="bg-lime-400 hover:bg-lime-300 transition-colors text-black font-semibold px-6 py-3 rounded-xl flex items-center gap-2 text-sm">
+                <i class="fab fa-whatsapp"></i> WHATSAPP ME
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 fade-in" id="hero-content">
+                <div class="inline-flex items-center gap-2 bg-white/10 text-white text-sm px-4 py-2 rounded-3xl">
+                    <div class="w-2 h-2 bg-lime-400 rounded-full animate-pulse"></div>
+                    AVAILABLE
+                </div>
+                
+                <h1 class="heading-font text-7xl md:text-8xl font-bold leading-none tracking-tighter">
+                    SNEHIL<br>BAJAJ
+                </h1>
+                
+                <p class="text-2xl text-gray-300 max-w-lg">
+                    2D/3D Animator • Motion Designer • Visual Storyteller
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#portfolio" class="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:bg-lime-400 transition-colors">
+                        VIEW WORK
+                    </a>
+                    <a href="#contact" class="border border-white/50 hover:border-lime-400 px-8 py-4 rounded-2xl font-semibold transition-colors">
+                        LET'S TALK
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative fade-in scale-in" id="hero-image">
+                <img src="Asset/profile.webp" alt="Snehil Bajaj" 
+                     class="w-full rounded-3xl shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16">
+                <div class="md:col-span-5 fade-in" id="about-left">
+                    <h2 class="heading-font text-6xl font-bold mb-8">ABOUT ME</h2>
+                    <div class="prose prose-invert text-lg text-gray-300">
+                        <p id="about-text">
+                            Creative, multi-disciplinary Graphic Designer, Motion Graphics Artist, and Video Editor with extensive experience driving high-impact visual marketing and advertisement design campaigns. Specialized in crafting engaging digital content, ranging from dynamic video invitation cards to optimized YouTube video editing and promotional videos. Adept at developing comprehensive brand identity, logo design, product design, and packaging design solutions that resonate with diverse audiences. Backed by foundational technical skills in 3D modelling, surfacing & texturing, production lighting, and render optimization, offering a unique cross-functional edge in transforming conceptual ideas into polished, industry-standard multimedia assets.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-7 fade-in-left" id="about-right">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-zinc-900 p-8 rounded-3xl">
+                            <h3 class="uppercase text-lime-400 text-sm mb-6">Capabilities</h3>
+                            <ul id="capabilities-list" class="space-y-4 text-gray-300">
+                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> 3D Modelling &amp; Lighting &amp; Texturing</li>
+                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Motion Graphics</li>
+                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Product Design</li>
+                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Brand Identity</li>
+                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Video Editing</li>
+				<li class="flex items-center gap-3"><span class="text-lime-400">→</span> Logo Design</li>
+				<li class="flex items-center gap-3"><span class="text-lime-400">→</span> Invitation cards</li>
+				<li class="flex items-center gap-3"><span class="text-lime-400">→</span> Promotion design</li>
+                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Advertisements </li>
+                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> UGC Ads </li>
+
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-zinc-900 p-8 rounded-3xl">
+                            <h3 class="uppercase text-lime-400 text-sm mb-6">Tools</h3>
+                            <ul id="tools-list" class="space-y-4 text-gray-300">
+                                <li>• Autodesk Maya</li>
+				<li>• 3ds Max</li>
+                                <li>• Adobe Premiere Pro</li>
+				<li>• Adobe After Effects</li>
+                                <li>• Adobe Photoshop</li>
+				<li>• Adobe Illustrator</li>
+				<li>• Adobe InDesign</li>
+				<li>• Adobe Audition</li>
+                                <li>• CorelDRAW</li>
+                                <li>• Canva</li>
+				<li>• Ai Tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="py-24 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="fade-in mb-12">
+            <h2 class="heading-font text-6xl font-bold tracking-tight">SELECTED WORK</h2>
+        </div>
+        
+        <!-- Main Portfolio Grid (Cards side-by-side) -->
+        <div id="portfolio-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Card 1: 3D Animation Showreel -->
+            <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
+                <div>
+                    <div class="relative h-72">
+                        <img src="Asset/3D.webp" alt="3D Animation Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">3D & VFX</div>
+                    </div>
+                    <div class="p-8 pb-4">
+                        <h3 class="text-2xl font-bold mb-3 text-zinc-100">3D Animation Showreel</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Featuring advanced character animation pipelines, dynamic VFX simulation passes, and hard-surface cinematic environment designs.</p>
+                    </div>
+                </div>
+                <div class="p-8 pt-0">
+                    <a href="https://drive.google.com/drive/folders/1UF0ZpI_F7zuRWk5SpzBFqq1PmTM64V3V?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
+                        View More <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: Logo Designing & Branding Showreel -->
+            <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
+                <div>
+                    <div class="relative h-72">
+                        <img src="Asset/Bra.webp" alt="Logo Designing & Branding Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Branding</div>
+                    </div>
+                    <div class="p-8 pb-4">
+                        <h3 class="text-2xl font-bold mb-3 text-zinc-100">Logo Designing & Branding Showreel</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Unified corporate identity frameworks, strategic logo architectures, typography guides, and premium scalable assets.</p>
+                    </div>
+                </div>
+                <div class="p-8 pt-0">
+                    <a href="https://drive.google.com/drive/folders/14xelnKeeP0ADiFSeoSNyvDWyjUVBUx8B?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
+                        View More <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: Advertisement Design Showreel -->
+            <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
+                <div>
+                    <div class="relative h-72">
+                        <img src="Asset/ade.webp" alt="Advertisement Design Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Marketing</div>
+                    </div>
+                    <div class="p-8 pb-4">
+                        <h3 class="text-2xl font-bold mb-3 text-zinc-100">Advertisement Design Showreel</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">High-engagement promotional commercial video ads, targeted social media creative suites, and performance-optimized visual layouts.</p>
+                    </div>
+                </div>
+                <div class="p-8 pt-0">
+                    <a href="https://drive.google.com/drive/folders/1aCeeBsKssa1maSBOO79zqQELxET6VuAj?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
+                        View More <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4: Product & Packaging Showreel -->
+            <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
+                <div>
+                    <div class="relative h-72">
+                        <img src="Asset/pro.webp" alt="Product & Packaging Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Product Design</div>
+                    </div>
+                    <div class="p-8 pb-4">
+                        <h3 class="text-2xl font-bold mb-3 text-zinc-100">Product & Packaging Showreel</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Advanced 3D hard-surface product models, production-ready label mapping, complex PBR texturing, and realistic studio lighting renders.</p>
+                    </div>
+                </div>
+                <div class="p-8 pt-0">
+                    <a href="https://drive.google.com/drive/folders/1aMCBgaQF8Zx7G-EOT1OGLzDamFzpDNJf?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
+                        View More <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 5: Invitation Cards Showreel -->
+            <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
+                <div>
+                    <div class="relative h-72">
+                        <img src="Asset/inv.webp" alt="Invitation Cards Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Print & Digital</div>
+                    </div>
+                    <div class="p-8 pb-4">
+                        <h3 class="text-2xl font-bold mb-3 text-zinc-100">Invitation Cards Showreel</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Bespoke dynamic digital invitations, layout curation for luxury stationery systems, and traditional-modern crossover illustration aesthetics.</p>
+                    </div>
+                </div>
+                <div class="p-8 pt-0">
+                    <a href="https://drive.google.com/drive/folders/1WUdI0ZFVlF4yliUxvvG-YmO4kWoJ81nu?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
+                        View More <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CAREER -->
+<section id="career" class="py-24 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="heading-font text-6xl font-bold mb-16 fade-in text-zinc-100">CAREER</h2>
+        
+        <div class="space-y-12" id="career-list">
+            
+            <!-- Job 1: Polyframe Academy -->
+            <div class="bg-zinc-900 p-8 md:p-10 rounded-3xl fade-in-up border border-zinc-800/50">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-zinc-100">Polyframe Academy of Arts and Cinematics</h3>
+                        <p class="text-lime-400 font-medium tracking-wide mt-1">Owner & Senior Teacher — 3D Art & Animation</p>
+                    </div>
+                    <span class="text-zinc-400 text-sm md:text-base font-semibold bg-zinc-800 px-4 py-1.5 rounded-full self-start md:self-center">
+                        2020 – Present
+                    </span>
+                </div>
+                <ul class="space-y-4 text-zinc-400">
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span>Deliver advanced curriculum covering motion graphics, non-linear video editing, UI/UX asset creation, and comprehensive brand identity systems.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span>Instruct students in hard-surface 3D product modeling, UV unwrapping, and PBR texturing workflows tailored for industry-standard pipelines.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span>Direct end-to-end portfolio development pipelines, mentoring emerging talent to transform conceptual classroom theory into commercial, industry-ready digital media assets.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Job 2: Freelance -->
+            <div class="bg-zinc-900 p-8 md:p-10 rounded-3xl fade-in-up border border-zinc-800/50">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-zinc-100">Freelance Design & Animation Projects</h3>
+                        <p class="text-lime-400 font-medium tracking-wide mt-1">Senior Designer, Editor & Lead Product Designer</p>
+                    </div>
+                    <span class="text-zinc-400 text-sm md:text-base font-semibold bg-zinc-800 px-4 py-1.5 rounded-full self-start md:self-center">
+                        2020 – Present
+                    </span>
+                </div>
+                <ul class="space-y-4 text-zinc-400">
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span><strong>Sattvic Drinks:</strong> Directed comprehensive product design strategies and led the creative execution for corporate brand identity and premium packaging visuals.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span><strong>Mado Marketing / Ads Agency Hub / Globistic View India:</strong> Spearheaded scalable visual design frameworks and oversaw post-production video editing workflows for high-conversion client marketing campaigns and promotional branded assets.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span><strong>Jinagam Prabhavna Creations:</strong> Contributed key 3D animation and dynamic visual effects (VFX) simulation passes as Junior 3D Animator & FX Artist for the independent film <em>“Tap Ki Mahima”</em>, alongside developing brand-aligned marketing poster layouts and high-impact advertisement material designs.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span><strong>Saroj Enterprises:</strong> Engineered corporate logo designs, targeted advertising assets, brand collateral typography, and distinct product identity systems.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span><strong>Om Enterprises:</strong> Produced high-engagement Social Media Marketing (SMM) promotional assets, print-ready pamphlets, multi-page brochure layouts, and high-conversion commercial video ads.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span><strong>Shubh Invites:</strong> Conceptualized and executed bespoke digital invitation and wedding stationery designs, establishing cohesive brand architecture and custom logos.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Job 3: Exam Taiyaari -->
+            <div class="bg-zinc-900 p-8 md:p-10 rounded-3xl fade-in-up border border-zinc-800/50">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-zinc-100">Exam Taiyaari</h3>
+                        <p class="text-lime-400 font-medium tracking-wide mt-1">Junior Editor & Animator (Internship)</p>
+                    </div>
+                    <span class="text-zinc-400 text-sm md:text-base font-semibold bg-zinc-800 px-4 py-1.5 rounded-full self-start md:self-center">
+                        2019 • 3 Months
+                    </span>
+                </div>
+                <ul class="space-y-4 text-zinc-400">
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span>Supported high-volume video editing and motion graphics workflows for educational content under senior creative direction.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-lime-400 mt-1">→</span>
+                        <span>Assisted in the production pipeline of engaging 2D animation assets for online digital learning platforms.</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CLIENTS / TRUSTED BY ==================== -->
+<section id="clients" class="py-24 bg-zinc-950 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="heading-font text-5xl font-bold text-center mb-16 fade-in">TRUSTED BY</h2>
+        
+        <!-- Auto Sliding Logo Marquee -->
+        <div class="relative">
+            <div id="logo-marquee" class="flex items-center gap-16 whitespace-nowrap animate-marquee">
+                <!-- Logos will be duplicated automatically for seamless loop -->
+                <img src="Asset/mm.webp" alt="Mado Marketing" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/sd.webp" alt="Satvic Drinks" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/sb.webp" alt="Saroj Enterprises" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/gvi.webp" alt="GVI" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/ams.webp" alt="Ayush Marketing Solutions" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/gapk.webp" alt="GAPK" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/om.webp" alt="OM Enterprises" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/si.webp" alt="Shubh Invites" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/pf.webp" alt="Polyframe" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+
+
+                <!-- Duplicate for seamless infinite loop -->
+                <img src="Asset/mm.webp" alt="Mado Marketing" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/sd.webp" alt="Satvic Drinks" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/sb.webp" alt="Saroj Enterprises" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/gvi.webp" alt="GVI" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/ams.webp" alt="Ayush Marketing Solutions" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/gapk.webp" alt="GAPK" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/om.webp" alt="OM Enterprises" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+                <img src="Asset/pf.webp" alt="Polyframe" class="h-16 w-auto object-contain hover:scale-110 transition-transform">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- EDUCATION & ACHIEVEMENTS -->
+<section class="py-24 bg-zinc-950 text-white">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+        
+        <!-- EDUCATION COLUMN -->
+        <div class="fade-in">
+            <h3 class="uppercase text-lime-400 mb-8 flex items-center gap-3 font-semibold text-lg tracking-wider">
+                🎓 EDUCATION
+            </h3>
+            
+            <div id="education-list" class="space-y-6">
+                <!-- Degree 1 -->
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800/50">
+                    <div class="flex justify-between items-start gap-4 mb-2">
+                        <h4 class="text-xl font-bold text-zinc-100">Bachelor of Fine Arts (BFA) — Applied Arts</h4>
+                        <span class="text-zinc-400 text-sm font-semibold bg-zinc-800 px-3 py-1 rounded-full shrink-0">2021</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-2">Chhatrapati Shahu Ji Maharaj University (CSJMU)</p>
+                    <p class="text-lime-400 text-sm font-medium">Score: 74.5%</p>
+                </div>
+
+                <!-- Degree 2 -->
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800/50">
+                    <div class="flex justify-between items-start gap-4 mb-2">
+                        <h4 class="text-xl font-bold text-zinc-100">Diploma- Advance 3d and animation</h4>
+                        <span class="text-zinc-400 text-sm font-semibold bg-zinc-800 px-3 py-1 rounded-full shrink-0">2021</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-2">MAAC, Kanpur</p>
+                    <p class="text-lime-400 text-sm font-medium">Score: A+</p>
+                </div>
+
+                <!-- Degree 3 -->
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800/50">
+                    <div class="flex justify-between items-start gap-4 mb-2">
+                        <h4 class="text-xl font-bold text-zinc-100">Class 12 — Commerce</h4>
+                        <span class="text-zinc-400 text-sm font-semibold bg-zinc-800 px-3 py-1 rounded-full shrink-0">2017</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-2">Eshwaranand Siksha Niketan, Kanpur (UP Board)</p>
+                    <p class="text-lime-400 text-sm font-medium">Score: 60%</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ACHIEVEMENTS COLUMN -->
+        <div class="fade-in-left">
+            <h3 class="uppercase text-lime-400 mb-8 flex items-center gap-3 font-semibold text-lg tracking-wider">
+                🏆 ACHIEVEMENTS & CERTIFICATIONS
+            </h3>
+            
+            <div id="achievements-list" class="space-y-4">
+                <!-- Achievement 1 -->
+                <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
+                    <span class="text-lime-400 mt-0.5 text-lg">→</span>
+                    <div>
+                        <h4 class="font-bold text-zinc-100">Gold Medallist — "Clash of Creativity"</h4>
+                        <p class="text-zinc-400 text-sm mt-1">Recognized for Excellence in CG Lighting & Texturing.</p>
+                    </div>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
+                    <span class="text-lime-400 mt-0.5 text-lg">→</span>
+                    <div>
+                        <h4 class="font-bold text-zinc-100">Certified 3D Animator</h4>
+                        <p class="text-zinc-400 text-sm mt-1">Credential issued by UNIC (Powered by UNESCO).</p>
+                    </div>
+                </div>
+
+                <!-- Achievement 3 -->
+                <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
+                    <span class="text-lime-400 mt-0.5 text-lg">→</span>
+                    <div>
+                        <h4 class="font-bold text-zinc-100">Selected Photography Participant</h4>
+                        <p class="text-zinc-400 text-sm mt-1">Represented and showcased work at MIT Pune & CSJMU Kanpur photography competitions.</p>
+                    </div>
+                </div>
+
+                <!-- Achievement 4 -->
+                <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
+                    <span class="text-lime-400 mt-0.5 text-lg">→</span>
+                    <div>
+                        <h4 class="font-bold text-zinc-100">Sand Art Competitor</h4>
+                        <p class="text-zinc-400 text-sm mt-1">Active event participant in the CSJMU Kanpur Sand Art Competition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-32 bg-black border-t border-white/10">
+        <div class="max-w-4xl mx-auto text-center px-6 fade-in scale-in">
+            <div class="text-7xl heading-font font-bold mb-6">LET'S TALK.</div>
+            <p class="text-2xl text-gray-400 mb-12">Available for freelance projects, collaborations and full-time roles.</p>
+            
+            <a href="mailto:snehilbajajdesign@gmail.com" 
+               class="inline-block bg-lime-400 text-black font-semibold text-xl px-12 py-6 rounded-3xl hover:scale-105 transition-transform">
+                snehilbajajdesign@gmail.com
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Tailwind script already loaded
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        // Observe all elements with fade-in classes
+        function initAnimations() {
+            document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Add sample portfolio items with animation
+        function addPortfolioItem(title, category, year, imagePath, description) {
+            const grid = document.getElementById('portfolio-grid');
+            const card = document.createElement('div');
+            card.className = 'portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden';
+            card.innerHTML = `
+                <div class="relative h-80">
+                    <img src="${imagePath}" alt="${title}" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full">${category} • ${year}</div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-2">${title}</h3>
+                    <p class="text-gray-400">${description}</p>
+                </div>
+            `;
+            grid.appendChild(card);
+            observer.observe(card); // Make new cards animate too
+        }
+
+        // Initialize everything
+        window.onload = function() {
+            initAnimations();
+            
+            // Example portfolio items (replace paths with your Asset folder files)
+                        // You can keep adding more with addPortfolioItem()
+        };
+    </script>
+
+    <!-- ==================== EDITING GUIDE ==================== -->
+    <!-- 
+    HOW TO EDIT (Still Super Easy):
+    
+    1. Text → Edit directly inside tags
+    2. Images → Put files in "Asset" folder and update src paths
+    3. Add new portfolio items → Use addPortfolioItem(...) in the script
+    4. Animations are automatic on scroll!
+    
+    New Features Added:
+    - Smooth fade-in when scrolling
+    - Slide from left/right
+    - Scale effect on hero
+    - Hover lift on portfolio cards
+    - All very lightweight and fast
+    -->
+</body>
+</html>

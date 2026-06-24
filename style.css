@@ -1,0 +1,31 @@
+/* Custom Fine-Tuned Visual Aesthetics */
+
+/* Smooth alignment transitions */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Linear Infinite Marquee Animations */
+@keyframes continuousLoop {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.3333%); }
+}
+
+.marquee-animation {
+    display: flex;
+    width: max-content;
+    animation: continuousLoop 25s linear infinite;
+}
+
+.marquee-wrapper {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Micro-Grid Background Overlay */
+.grid-bg {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+}

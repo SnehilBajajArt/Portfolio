@@ -1,572 +1,802 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snehil Bajaj | 2D/3D Animator & Visual Designer</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23a3e635'/><text x='50' y='50' font-family='sans-serif' font-weight='bold' font-size='45' fill='black' text-anchor='middle' dy='.35em'>SB</text></svg>" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-        
-        :root {
-            --primary: #a3e635;
-        }
-        
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-        
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snehil Bajaj — 2D/3D Animator & Visual Designer</title>
+<meta name="description" content="Portfolio of Snehil Bajaj, 2D/3D Animator, Motion Designer & Visual Storyteller based in Kanpur, India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg: #0b0b0c;
+  --bg-alt: #111113;
+  --panel: #15151a;
+  --line: rgba(255,255,255,0.08);
+  --ink: #f3f3ef;
+  --ink-dim: #9b9ba3;
+  --accent: #c8ff5b;        /* signature acid lime — frame markers */
+  --accent-dim: #8fae3f;
+  --rust: #ff7a45;          /* secondary, used sparingly — "rec" accent */
+  --display: 'Bebas Neue', 'Space Grotesk', sans-serif;
+  --body: 'Space Grotesk', system-ui, sans-serif;
+  --radius: 22px;
+  --container: 1180px;
+}
 
-        /* Scroll Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none; margin:0; padding:0;}
+section{scroll-margin-top:84px; position:relative;}
+.wrap{max-width:var(--container); margin:0 auto; padding:0 24px;}
 
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .fade-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
+::selection{ background:var(--accent); color:#0b0b0c; }
 
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .fade-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
+/* film-grain ambience */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:1; pointer-events:none;
+  opacity:.045; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.85);
-            transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .scale-in.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
+/* ============ TYPE ============ */
+.eyebrow{
+  font-family:var(--body); text-transform:uppercase; letter-spacing:.22em;
+  font-size:.72rem; font-weight:600; color:var(--accent);
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{ content:""; width:22px; height:1px; background:var(--accent); display:inline-block; }
+h1,h2,h3,h4{ font-family:var(--display); letter-spacing:.01em; margin:0; font-weight:400; }
+h2.section-title{
+  font-size:clamp(2.6rem, 6vw, 4.6rem);
+  line-height:.95; text-transform:uppercase;
+  color:var(--ink);
+}
+p{ line-height:1.7; color:var(--ink-dim); margin:0; }
 
-        .portfolio-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .portfolio-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
-        }
+/* ============ HEADER ============ */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:80;
+  background:rgba(11,11,12,0.78); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  transition:transform .4s ease, background .4s ease;
+}
+header.hide{ transform:translateY(-100%); }
+.header-inner{
+  max-width:var(--container); margin:0 auto; padding:16px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.logo{ display:flex; align-items:center; gap:12px; }
+.logo .mark{
+  width:38px; height:38px; border-radius:10px;
+  background:var(--accent); color:#0b0b0c;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--display); font-size:1.3rem;
+  position:relative;
+}
+.logo .mark::after{
+  content:""; position:absolute; inset:-4px; border:1px solid var(--accent);
+  border-radius:13px; opacity:.5;
+}
+.logo span{ font-family:var(--display); font-size:1.25rem; letter-spacing:.03em; text-transform:uppercase; }
 
-        section {
-            scroll-margin-top: 80px;
-        }
+nav.primary{ display:flex; align-items:center; gap:36px; }
+nav.primary a{
+  font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; font-weight:600;
+  color:var(--ink-dim); position:relative; padding:4px 0;
+}
+nav.primary a::after{
+  content:""; position:absolute; left:0; bottom:-2px; height:1.5px; width:0%;
+  background:var(--accent); transition:width .3s ease;
+}
+nav.primary a:hover{ color:var(--ink); }
+nav.primary a:hover::after{ width:100%; }
 
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(calc(-100% - 4rem)); }
-        }
+.cta-btn{
+  background:var(--accent); color:#0b0b0c; font-weight:700;
+  padding:12px 22px; border-radius:14px; font-size:.78rem;
+  letter-spacing:.08em; text-transform:uppercase;
+  display:inline-flex; align-items:center; gap:8px;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
+  border:none; cursor:pointer;
+}
+.cta-btn:hover{ transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(200,255,91,.5); }
 
-        .animate-marquee {
-            animation: marquee 25s linear infinite;
-        }
+.burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+.burger span{ width:24px; height:2px; background:var(--ink); display:block; transition:.3s; }
+.burger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
 
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
-    </style>
+.mobile-nav{
+  position:fixed; inset:0 0 0 auto; width:min(80vw,340px); top:0; height:100vh;
+  background:var(--panel); border-left:1px solid var(--line); z-index:90;
+  transform:translateX(100%); transition:transform .45s cubic-bezier(.16,1,.3,1);
+  padding:100px 32px 32px; display:flex; flex-direction:column; gap:28px;
+}
+.mobile-nav.open{ transform:translateX(0); }
+.mobile-nav a{ font-family:var(--display); font-size:1.6rem; text-transform:uppercase; letter-spacing:.02em; }
+.scrim{
+  position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:85;
+  opacity:0; pointer-events:none; transition:opacity .4s ease;
+}
+.scrim.open{ opacity:1; pointer-events:auto; }
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh; display:flex; align-items:center;
+  padding:130px 0 70px;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(200,255,91,.10), transparent 60%),
+    radial-gradient(700px 500px at 0% 110%, rgba(255,122,69,.08), transparent 60%);
+}
+.hero .wrap{ display:grid; grid-template-columns:1.15fr .85fr; gap:60px; align-items:center; }
+.hero-status{
+  display:inline-flex; align-items:center; gap:9px;
+  background:rgba(255,255,255,.06); border:1px solid var(--line);
+  padding:8px 16px; border-radius:30px; font-size:.74rem;
+  text-transform:uppercase; letter-spacing:.14em; font-weight:600; color:var(--ink-dim);
+  margin-bottom:24px;
+}
+.dot-pulse{ width:8px; height:8px; border-radius:50%; background:var(--accent); position:relative; }
+.dot-pulse::after{
+  content:""; position:absolute; inset:0; border-radius:50%; background:var(--accent);
+  animation:pulse 1.8s ease-out infinite;
+}
+@keyframes pulse{ 0%{transform:scale(1); opacity:.7;} 100%{transform:scale(2.8); opacity:0;} }
+
+.hero h1{
+  font-size:clamp(3.4rem, 9.5vw, 7.4rem); line-height:.86; text-transform:uppercase;
+}
+.hero h1 .stroke{
+  -webkit-text-stroke:1.5px var(--ink); color:transparent;
+}
+.name-hover{ cursor:default; }
+.name-hover span{
+  display:inline-block;
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1), color .45s ease, -webkit-text-stroke-color .45s ease, text-shadow .45s ease;
+  will-change:transform;
+}
+#word-snehil{ transition-delay:0s; }
+#word-bajaj{ transition-delay:.12s; color:var(--ink); }
+.name-hover:hover #word-snehil{
+  color:var(--accent);
+  -webkit-text-stroke-color:var(--accent);
+  transform:scale(1.06) translateY(-4px);
+  text-shadow:0 0 36px rgba(200,255,91,.45);
+}
+.name-hover:hover #word-bajaj{
+  transform:scale(1.04) translateY(-3px);
+  transition-delay:.16s;
+}
+.hero-role{
+  margin-top:22px; font-size:clamp(1.1rem,2.2vw,1.5rem); color:var(--ink-dim);
+  font-weight:500; max-width:520px;
+}
+.hero-role b{ color:var(--accent); font-weight:600; }
+.hero-actions{ display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; }
+.btn-outline{
+  border:1px solid rgba(255,255,255,.25); padding:16px 30px; border-radius:16px;
+  font-weight:600; text-transform:uppercase; font-size:.82rem; letter-spacing:.08em;
+  transition:.3s ease; display:inline-flex; align-items:center; gap:8px;
+}
+.btn-outline:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-3px); }
+.btn-fill{
+  background:var(--ink); color:#0b0b0c; padding:16px 30px; border-radius:16px;
+  font-weight:700; text-transform:uppercase; font-size:.82rem; letter-spacing:.08em;
+  transition:.3s ease; display:inline-flex; align-items:center; gap:8px;
+}
+.btn-fill:hover{ background:var(--accent); transform:translateY(-3px); }
+
+.hero-frame{
+  position:relative; border-radius:28px; overflow:hidden;
+  border:1px solid var(--line); aspect-ratio:4/5;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.7);
+}
+.hero-frame img{ width:100%; height:100%; object-fit:cover; }
+.hero-frame .corner{
+  position:absolute; width:26px; height:26px; border:2px solid var(--accent);
+}
+.corner.tl{ top:14px; left:14px; border-right:none; border-bottom:none; }
+.corner.br{ bottom:14px; right:14px; border-left:none; border-top:none; }
+.frame-tag{
+  position:absolute; bottom:18px; left:18px; right:18px;
+  background:rgba(11,11,12,.7); backdrop-filter:blur(8px);
+  border:1px solid var(--line); border-radius:12px;
+  padding:10px 14px; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+  display:flex; justify-content:space-between; color:var(--ink-dim);
+}
+.frame-tag span{ color:var(--accent); }
+
+.scroll-cue{
+  position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-dim);
+  animation:bob 2.4s ease-in-out infinite;
+}
+.scroll-cue .line{ width:1px; height:30px; background:linear-gradient(var(--accent), transparent); }
+@keyframes bob{ 0%,100%{ transform:translate(-50%,0);} 50%{ transform:translate(-50%,8px);} }
+
+/* ============ REVEAL ANIMATIONS ============ */
+.reveal{ opacity:0; transform:translateY(46px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal.visible{ opacity:1; transform:translateY(0); }
+.reveal-left{ opacity:0; transform:translateX(-50px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal-left.visible{ opacity:1; transform:translateX(0); }
+.reveal-right{ opacity:0; transform:translateX(50px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal-right.visible{ opacity:1; transform:translateX(0); }
+.reveal-scale{ opacity:0; transform:scale(.9); transition:opacity 1s cubic-bezier(.34,1.56,.64,1), transform 1s cubic-bezier(.34,1.56,.64,1); }
+.reveal-scale.visible{ opacity:1; transform:scale(1); }
+.stagger > *{ transition-delay:calc(var(--i,0) * 80ms); }
+
+/* ============ ABOUT ============ */
+.about{ padding:120px 0; background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.about-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; }
+.about-text p{ font-size:1.08rem; margin-top:26px; }
+.panel{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+  padding:32px;
+}
+.panel h3{
+  font-family:var(--body); text-transform:uppercase; letter-spacing:.14em; font-size:.78rem;
+  color:var(--accent); font-weight:700; margin-bottom:22px;
+}
+.skill-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.tag-list li, .skill-list li{
+  display:flex; align-items:center; gap:10px; color:var(--ink-dim);
+  font-size:.92rem; padding:9px 0; border-bottom:1px dashed var(--line);
+}
+.tag-list li:last-child, .skill-list li:last-child{ border-bottom:none; }
+.skill-list li::before{ content:"→"; color:var(--accent); font-weight:700; }
+.tag-list li::before{ content:"●"; color:var(--accent); font-size:.5rem; }
+
+/* ============ PORTFOLIO ============ */
+.portfolio{ padding:120px 0; }
+.section-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:54px; gap:24px; flex-wrap:wrap; }
+.section-head p{ max-width:360px; }
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.card{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; display:flex; flex-direction:column; height:100%;
+  transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .4s ease, box-shadow .5s ease;
+}
+.card:hover{ transform:translateY(-10px); border-color:rgba(200,255,91,.4); box-shadow:0 30px 60px -25px rgba(0,0,0,.65); }
+.card-media{ position:relative; aspect-ratio:4/3; overflow:hidden; }
+.card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.16,1,.3,1); }
+.card:hover .card-media img{ transform:scale(1.08); }
+.card-tag{
+  position:absolute; top:14px; right:14px; background:rgba(11,11,12,.75); backdrop-filter:blur(6px);
+  color:var(--accent); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:7px 12px; border-radius:30px; font-weight:700; border:1px solid rgba(255,255,255,.1);
+}
+.card-body{ padding:26px 26px 0; flex:1; }
+.card-body h3{ font-family:var(--body); font-size:1.2rem; font-weight:700; margin-bottom:10px; color:var(--ink); }
+.card-body p{ font-size:.92rem; }
+.card-foot{ padding:22px 26px 26px; }
+.card-link{
+  width:100%; background:var(--accent); color:#0b0b0c; font-weight:700; font-size:.82rem;
+  text-transform:uppercase; letter-spacing:.06em; padding:13px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  transition:.3s ease;
+}
+.card-link:hover{ background:var(--ink); gap:12px; }
+
+/* ============ CLIENTS / MARQUEE ============ */
+.clients{ padding:90px 0; background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
+.clients h2{ text-align:center; margin-bottom:50px; }
+.marquee-track{ display:flex; width:max-content; animation:scroll-x 32s linear infinite; }
+.marquee-track:hover{ animation-play-state:paused; }
+.marquee-group{ display:flex; align-items:center; gap:70px; padding-right:70px; }
+.marquee-track img{ height:42px; width:auto; object-fit:contain; filter:grayscale(1) brightness(1.6); opacity:.55; transition:.4s ease; }
+.marquee-track img:hover{ filter:none; opacity:1; transform:scale(1.1); }
+@keyframes scroll-x{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+/* ============ CAREER ============ */
+.career{ padding:120px 0; }
+.timeline{ display:flex; flex-direction:column; gap:28px; }
+.job{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+  padding:36px; position:relative; overflow:hidden;
+}
+.job::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent);
+  transform:scaleY(0); transform-origin:top; transition:transform .6s ease;
+}
+.job.visible::before{ transform:scaleY(1); }
+.job-head{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; margin-bottom:22px; }
+.job-head h3{ font-family:var(--body); font-size:1.35rem; font-weight:700; color:var(--ink); }
+.job-role{ color:var(--accent); font-weight:600; font-size:.92rem; margin-top:6px; letter-spacing:.02em; }
+.job-period{
+  background:rgba(255,255,255,.06); border:1px solid var(--line); padding:8px 16px;
+  border-radius:30px; font-size:.76rem; font-weight:700; letter-spacing:.06em; height:fit-content;
+  color:var(--ink-dim); text-transform:uppercase;
+}
+.job ul{ display:flex; flex-direction:column; gap:14px; }
+.job li{ display:flex; gap:12px; color:var(--ink-dim); font-size:.95rem; line-height:1.65; }
+.job li::before{ content:"→"; color:var(--accent); font-weight:700; flex-shrink:0; }
+.job li strong{ color:var(--ink); }
+
+/* ============ EDU / ACHIEVEMENTS ============ */
+.edu-section{ padding:120px 0; background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.edu-card, .ach-card{
+  background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:22px 24px;
+}
+.edu-card + .edu-card, .ach-card + .ach-card{ margin-top:18px; }
+.edu-card .row{ display:flex; justify-content:space-between; gap:14px; margin-bottom:8px; }
+.edu-card h4{ font-family:var(--body); font-size:1.05rem; font-weight:700; color:var(--ink); }
+.edu-card .yr{ background:rgba(255,255,255,.06); font-size:.7rem; padding:5px 12px; border-radius:30px; color:var(--ink-dim); height:fit-content; white-space:nowrap; }
+.edu-card .school{ color:var(--ink-dim); font-size:.88rem; margin-bottom:4px; }
+.edu-card .score{ color:var(--accent); font-size:.85rem; font-weight:600; }
+.ach-card{ display:flex; gap:14px; align-items:flex-start; }
+.ach-card i{ color:var(--accent); margin-top:3px; }
+.ach-card h4{ font-family:var(--body); font-size:1rem; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.ach-card p{ font-size:.86rem; }
+
+/* ============ CONTACT ============ */
+.contact{ padding:150px 0; text-align:center; position:relative; }
+.contact::before{
+  content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:1px; height:60px; background:linear-gradient(var(--accent), transparent);
+}
+.contact h2{ font-size:clamp(2.8rem,8vw,6rem); text-transform:uppercase; margin-bottom:20px; }
+.contact p{ font-size:clamp(1.05rem,2vw,1.3rem); max-width:520px; margin:0 auto 44px; }
+.contact-link{
+  display:inline-flex; align-items:center; gap:12px; background:var(--accent); color:#0b0b0c;
+  font-weight:700; font-size:clamp(.95rem,2vw,1.2rem); padding:20px 38px; border-radius:30px;
+  transition:.4s cubic-bezier(.34,1.56,.64,1); word-break:break-word;
+}
+.contact-link:hover{ transform:scale(1.05); box-shadow:0 20px 50px -15px rgba(200,255,91,.55); }
+.contact-meta{ display:flex; gap:28px; justify-content:center; margin-top:40px; flex-wrap:wrap; }
+.contact-meta a{ color:var(--ink-dim); font-size:.9rem; display:flex; align-items:center; gap:8px; transition:.3s; }
+.contact-meta a:hover{ color:var(--accent); }
+
+footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; color:var(--ink-dim); font-size:.8rem; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 980px){
+  nav.primary{ display:none; }
+  .header-inner .cta-btn{ display:none; }
+  .burger{ display:flex; }
+  .hero .wrap{ grid-template-columns:1fr; }
+  .hero{ padding-top:110px; }
+  .about-grid{ grid-template-columns:1fr; gap:40px; }
+  .grid-3{ grid-template-columns:1fr 1fr; }
+  .edu-grid{ grid-template-columns:1fr; gap:0; }
+}
+@media (max-width: 640px){
+  .grid-3{ grid-template-columns:1fr; }
+  .skill-row{ grid-template-columns:1fr; }
+  .job-head{ flex-direction:column; }
+  .section-head{ flex-direction:column; align-items:flex-start; }
+  .hero-frame{ aspect-ratio:1/1; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}
+</style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-lime-400 rounded-full flex items-center justify-center text-black font-bold text-xl">SB</div>
-                <span class="heading-font text-xl md:text-2xl font-semibold tracking-tight">SB.Portfolio</span>
-            </div>
-            
-            <nav class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest">
-                <a href="#about" class="nav-link hover:text-lime-400 transition-colors">About</a>
-                <a href="#portfolio" class="nav-link hover:text-lime-400 transition-colors">Portfolio</a>
-                <a href="#clients" class="nav-link hover:text-lime-400 transition-colors">Clients</a>
-                <a href="#career" class="nav-link hover:text-lime-400 transition-colors">Career</a>
-                <a href="#contact" class="nav-link hover:text-lime-400 transition-colors">Contact</a>
-            </nav>
-            
-            <a href="https://wa.me/916388114814?text=Hi%2C%20I%20am%20intrested" target="_blank"
-               class="bg-lime-400 hover:bg-lime-300 transition-colors text-black font-semibold px-4 py-2.5 md:px-6 md:py-3 rounded-xl flex items-center gap-2 text-xs md:text-sm">
-                <i class="fab fa-whatsapp"></i> <span class="hidden sm:inline">WHATSAPP ME</span><span class="sm:hidden">CHAT</span>
-            </a>
+<body>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="#top" class="logo">
+      <span class="mark">SB</span>
+      <span>Snehil Bajaj</span>
+    </a>
+    <nav class="primary">
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#clients">Clients</a>
+      <a href="#career">Career</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="https://wa.me/916388114814" target="_blank" class="cta-btn">
+      <i class="fab fa-whatsapp"></i> Whatsapp Me
+    </a>
+    <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#about">About</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#clients">Clients</a>
+  <a href="#career">Career</a>
+  <a href="#contact">Contact</a>
+  <a href="https://wa.me/916388114814" target="_blank" class="cta-btn" style="justify-content:center; margin-top:10px;">
+    <i class="fab fa-whatsapp"></i> Whatsapp Me
+  </a>
+</nav>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="reveal visible-on-load">
+      <div class="hero-status"><span class="dot-pulse"></span> Available for new projects</div>
+      <h1 class="name-hover"><span class="stroke" id="word-snehil">SNEHIL</span><br><span id="word-bajaj">BAJAJ</span></h1>
+      <p class="hero-role">2D/3D Animator · Motion Designer · <b>Visual Storyteller</b> turning concepts into polished, industry-ready motion and brand assets.</p>
+      <div class="hero-actions">
+        <a href="#portfolio" class="btn-fill">View Work <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#contact" class="btn-outline">Let's Talk</a>
+      </div>
+    </div>
+    <div class="reveal-scale visible-on-load">
+      <div class="hero-frame">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <img src="Asset/profile.webp" alt="Portrait of Snehil Bajaj">
+        <div class="frame-tag"><span>● REC</span> CUT.01 — PORTFOLIO</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<section id="about" class="about">
+  <div class="wrap about-grid">
+    <div class="reveal-left">
+      <div class="eyebrow">Profile</div>
+      <h2 class="section-title" style="margin-top:18px;">About Me</h2>
+      <div class="about-text">
+        <p>Creative, multi-disciplinary Graphic Designer, Motion Graphics Artist, and Video Editor with extensive experience driving high-impact visual marketing and advertisement design campaigns.</p>
+        <p>Specialized in crafting engaging digital content, ranging from dynamic video invitation cards to optimized YouTube video editing and promotional videos. Adept at developing comprehensive brand identity, logo design, product design, and packaging design solutions that resonate with diverse audiences.</p>
+        <p>Backed by foundational technical skills in 3D modelling, surfacing &amp; texturing, production lighting, and render optimization — offering a unique cross-functional edge in transforming conceptual ideas into polished, industry-standard multimedia assets.</p>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="skill-row">
+        <div class="panel">
+          <h3>Capabilities</h3>
+          <ul class="skill-list">
+            <li>3D Modelling &amp; Lighting</li>
+            <li>Motion Graphics</li>
+            <li>Product Design</li>
+            <li>Brand Identity</li>
+            <li>Video Editing</li>
+            <li>Logo Design</li>
+            <li>Invitation Cards</li>
+            <li>Promotion Design</li>
+            <li>Advertisements</li>
+            <li>UGC Ads</li>
+          </ul>
         </div>
-    </header>
-
-    <section class="hero-bg min-h-screen flex items-center pt-24 pb-12">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
-            <div class="space-y-6 md:space-y-8 order-2 md:order-1 fade-in" id="hero-content">
-                <div class="inline-flex items-center gap-2 bg-white/10 text-white text-xs md:text-sm px-4 py-2 rounded-3xl">
-                    <div class="w-2 h-2 bg-lime-400 rounded-full animate-pulse"></div>
-                    AVAILABLE
-                </div>
-                
-                <h1 class="heading-font text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tighter">
-                    SNEHIL<br>BAJAJ
-                </h1>
-                
-                <p class="text-xl md:text-2xl text-gray-300 max-w-lg">
-                    2D/3D Animator • Motion Designer • Visual Storyteller
-                </p>
-                
-                <div class="flex flex-wrap gap-4">
-                    <a href="#portfolio" class="bg-white text-black text-sm md:text-base px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-semibold hover:bg-lime-400 transition-colors text-center flex-1 sm:flex-none">
-                        VIEW WORK
-                    </a>
-                    <a href="#contact" class="border border-white/50 hover:border-lime-400 text-sm md:text-base px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-semibold transition-colors text-center flex-1 sm:flex-none">
-                        LET'S TALK
-                    </a>
-                </div>
-            </div>
-            
-            <div class="relative order-1 md:order-2 fade-in scale-in max-w-md md:max-w-none mx-auto w-full" id="hero-image">
-                <img src="Asset/profile.webp" alt="Snehil Bajaj" class="w-full rounded-3xl shadow-2xl">
-            </div>
+        <div class="panel">
+          <h3>Tools</h3>
+          <ul class="tag-list">
+            <li>Autodesk Maya</li>
+            <li>3ds Max</li>
+            <li>Adobe Premiere Pro</li>
+            <li>Adobe After Effects</li>
+            <li>Adobe Photoshop</li>
+            <li>Adobe Illustrator</li>
+            <li>Adobe InDesign</li>
+            <li>Adobe Audition</li>
+            <li>CorelDRAW</li>
+            <li>Canva</li>
+            <li>AI Tools</li>
+          </ul>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="about" class="py-16 md:py-24 bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                <div class="lg:col-span-5 fade-in" id="about-left">
-                    <h2 class="heading-font text-4xl md:text-6xl font-bold mb-6 md:mb-8">ABOUT ME</h2>
-                    <div class="prose prose-invert text-base md:text-lg text-gray-300">
-                        <p id="about-text">
-                            Creative, multi-disciplinary Graphic Designer, Motion Graphics Artist, and Video Editor with extensive experience driving high-impact visual marketing and advertisement design campaigns. Specialized in crafting engaging digital content, ranging from dynamic video invitation cards to optimized YouTube video editing and promotional videos. Adept at developing comprehensive brand identity, logo design, product design, and packaging design solutions that resonate with diverse audiences. Backed by foundational technical skills in 3D modelling, surfacing & texturing, production lighting, and render optimization, offering a unique cross-functional edge in transforming conceptual ideas into polished, industry-standard multimedia assets.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="lg:col-span-7 fade-in-left" id="about-right">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div class="bg-zinc-900 p-6 md:p-8 rounded-3xl">
-                            <h3 class="uppercase text-lime-400 text-sm mb-6 font-semibold tracking-wider">Capabilities</h3>
-                            <ul id="capabilities-list" class="space-y-4 text-gray-300 text-sm md:text-base">
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> 3D Modelling &amp; Lighting</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Motion Graphics</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Product Design</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Brand Identity</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Video Editing</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Logo Design</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Invitation cards</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Promotion design</li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> Advertisements </li>
-                                <li class="flex items-center gap-3"><span class="text-lime-400">→</span> UGC Ads </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="bg-zinc-900 p-6 md:p-8 rounded-3xl">
-                            <h3 class="uppercase text-lime-400 text-sm mb-6 font-semibold tracking-wider">Tools</h3>
-                            <ul id="tools-list" class="space-y-4 text-gray-300 text-sm md:text-base">
-                                <li>• Autodesk Maya</li>
-                                <li>• 3ds Max</li>
-                                <li>• Adobe Premiere Pro</li>
-                                <li>• Adobe After Effects</li>
-                                <li>• Adobe Photoshop</li>
-                                <li>• Adobe Illustrator</li>
-                                <li>• Adobe InDesign</li>
-                                <li>• Adobe Audition</li>
-                                <li>• CorelDRAW</li>
-                                <li>• Canva</li>
-                                <li>• Ai Tools</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section id="portfolio" class="portfolio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Showreels</div>
+        <h2 class="section-title" style="margin-top:18px;">Selected Work</h2>
+      </div>
+      <p>A curated set of motion, branding and product showreels spanning 3D animation, advertising and packaging design.</p>
+    </div>
+    <div class="grid-3" id="portfolio-grid">
+
+      <div class="card reveal" style="--i:0">
+        <div class="card-media">
+          <img src="Asset/3D.webp" alt="3D Animation Showreel">
+          <span class="card-tag">3D &amp; VFX</span>
         </div>
-    </section>
-
-    <section id="portfolio" class="py-16 md:py-24 bg-black text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="fade-in mb-12">
-                <h2 class="heading-font text-4xl md:text-6xl font-bold tracking-tight">SELECTED WORK</h2>
-            </div>
-            
-            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="relative h-48 sm:h-64 md:h-72">
-                            <img src="Asset/3D.webp" alt="3D Animation Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">3D & VFX</div>
-                        </div>
-                        <div class="p-6 md:p-8 pb-4">
-                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-zinc-100">3D Animation Showreel</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed">Featuring advanced character animation pipelines, dynamic VFX simulation passes, and hard-surface cinematic environment designs.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 md:p-8 pt-0">
-                        <a href="https://drive.google.com/drive/folders/1UF0ZpI_F7zuRWk5SpzBFqq1PmTM64V3V?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
-                            View More <span>→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="relative h-48 sm:h-64 md:h-72">
-                            <img src="Asset/Bra.webp" alt="Logo Designing & Branding Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Branding</div>
-                        </div>
-                        <div class="p-6 md:p-8 pb-4">
-                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-zinc-100">Logo Designing & Branding Showreel</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed">Unified corporate identity frameworks, strategic logo architectures, typography guides, and premium scalable assets.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 md:p-8 pt-0">
-                        <a href="https://drive.google.com/drive/folders/14xelnKeeP0ADiFSeoSNyvDWyjUVBUx8B?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
-                            View More <span>→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="relative h-48 sm:h-64 md:h-72">
-                            <img src="Asset/ade.webp" alt="Advertisement Design Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Marketing</div>
-                        </div>
-                        <div class="p-6 md:p-8 pb-4">
-                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-zinc-100">Advertisement Design Showreel</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed">High-engagement promotional commercial video ads, targeted social media creative suites, and performance-optimized visual layouts.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 md:p-8 pt-0">
-                        <a href="https://drive.google.com/drive/folders/1aCeeBsKssa1maSBOO79zqQELxET6VuAj?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
-                            View More <span>→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="relative h-48 sm:h-64 md:h-72">
-                            <img src="Asset/pro.webp" alt="Product & Packaging Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Product Design</div>
-                        </div>
-                        <div class="p-6 md:p-8 pb-4">
-                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-zinc-100">Product & Packaging Showreel</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed">Advanced 3D hard-surface product models, production-ready label mapping, complex PBR texturing, and realistic studio lighting renders.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 md:p-8 pt-0">
-                        <a href="https://drive.google.com/drive/folders/1aMCBgaQF8Zx7G-EOT1OGLzDamFzpDNJf?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
-                            View More <span>→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800/50 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="relative h-48 sm:h-64 md:h-72">
-                            <img src="Asset/inv.webp" alt="Invitation Cards Showreel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold text-lime-400">Print & Digital</div>
-                        </div>
-                        <div class="p-6 md:p-8 pb-4">
-                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-zinc-100">Invitation Cards Showreel</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed">Bespoke dynamic digital invitations, layout curation for luxury stationery systems, and traditional-modern crossover illustration aesthetics.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 md:p-8 pt-0">
-                        <a href="https://drive.google.com/drive/folders/1WUdI0ZFVlF4yliUxvvG-YmO4kWoJ81nu?usp=drive_link" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
-                            View More <span>→</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="card-body">
+          <h3>3D Animation Showreel</h3>
+          <p>Advanced character animation pipelines, dynamic VFX simulation passes, and hard-surface cinematic environment designs.</p>
         </div>
-    </section>
-
-    <section id="clients" class="py-16 md:py-24 bg-zinc-950 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="heading-font text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16 fade-in">TRUSTED BY</h2>
-            
-            <div class="relative w-full overflow-hidden flex gap-16">
-                <div id="logo-marquee" class="flex items-center gap-16 whitespace-nowrap animate-marquee shrink-0">
-                    <img src="Asset/mm.webp" alt="Mado Marketing" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/sd.webp" alt="Satvic Drinks" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/sb.webp" alt="Saroj Enterprises" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/gvi.webp" alt="GVI" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/ams.webp" alt="Ayush Marketing Solutions" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/gapk.webp" alt="GAPK" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/om.webp" alt="OM Enterprises" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/si.webp" alt="Shubh Invites" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                    <img src="Asset/pf.webp" alt="Polyframe" class="h-12 md:h-16 w-auto object-contain hover:scale-110 transition-transform">
-                </div>
-            </div>
+        <div class="card-foot">
+          <a href="https://drive.google.com/drive/folders/1UF0ZpI_F7zuRWk5SpzBFqq1PmTM64V3V?usp=drive_link" target="_blank" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-    </section>
+      </div>
 
-    <section id="career" class="py-16 md:py-24 bg-black text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="heading-font text-4xl md:text-6xl font-bold mb-12 md:mb-16 fade-in text-zinc-100">CAREER</h2>
-            
-            <div class="space-y-8 md:space-y-12" id="career-list">
-                <div class="bg-zinc-900 p-6 md:p-10 rounded-3xl fade-in-up border border-zinc-800/50">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-zinc-100">Polyframe Academy of Arts and Cinematics</h3>
-                            <p class="text-lime-400 font-medium tracking-wide mt-1 text-sm md:text-base">Owner & Senior Teacher — 3D Art & Animation</p>
-                        </div>
-                        <span class="text-zinc-400 text-xs md:text-base font-semibold bg-zinc-800 px-4 py-1.5 rounded-full self-start md:self-center">
-                            2020 – Present
-                        </span>
-                    </div>
-                    <ul class="space-y-4 text-zinc-400 text-sm md:text-base">
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span>Deliver advanced curriculum covering motion graphics, non-linear video editing, UI/UX asset creation, and comprehensive brand identity systems.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span>Instruct students in hard-surface 3D product modeling, UV unwrapping, and PBR texturing workflows tailored for industry-standard pipelines.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span>Direct end-to-end portfolio development pipelines, mentoring emerging talent to transform conceptual classroom theory into commercial, industry-ready digital media assets.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-zinc-900 p-6 md:p-10 rounded-3xl fade-in-up border border-zinc-800/50">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-zinc-100">Freelance Design & Animation Projects</h3>
-                            <p class="text-lime-400 font-medium tracking-wide mt-1 text-sm md:text-base">Senior Designer, Editor & Lead Product Designer</p>
-                        </div>
-                        <span class="text-zinc-400 text-xs md:text-base font-semibold bg-zinc-800 px-4 py-1.5 rounded-full self-start md:self-center">
-                            2020 – Present
-                        </span>
-                    </div>
-                    <ul class="space-y-4 text-zinc-400 text-sm md:text-base">
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span><strong>Sattvic Drinks:</strong> Directed comprehensive product design strategies and led the creative execution for corporate brand identity and premium packaging visuals.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span><strong>Mado Marketing / Ads Agency Hub / Globistic View India:</strong> Spearheaded scalable visual design frameworks and oversaw post-production video editing workflows for high-conversion client marketing campaigns and promotional branded assets.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span><strong>Jinagam Prabhavna Creations:</strong> Contributed key 3D animation and dynamic visual effects (VFX) simulation passes as Junior 3D Animator & FX Artist for the independent film <em>“Tap Ki Mahima”</em>, alongside developing brand-aligned marketing poster layouts and high-impact advertisement material designs.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span><strong>Saroj Enterprises:</strong> Engineered corporate logo designs, targeted advertising assets, brand collateral typography, and distinct product identity systems.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span><strong>Om Enterprises:</strong> Produced high-engagement Social Media Marketing (SMM) promotional assets, print-ready pamphlets, multi-page brochure layouts, and high-conversion commercial video ads.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span><strong>Shubh Invites:</strong> Conceptualized and executed bespoke digital invitation and wedding stationery designs, establishing cohesive brand architecture and custom logos.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-zinc-900 p-6 md:p-10 rounded-3xl fade-in-up border border-zinc-800/50">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-zinc-100">Exam Taiyaari</h3>
-                            <p class="text-lime-400 font-medium tracking-wide mt-1 text-sm md:text-base">Junior Editor & Animator (Internship)</p>
-                        </div>
-                        <span class="text-zinc-400 text-xs md:text-base font-semibold bg-zinc-800 px-4 py-1.5 rounded-full self-start md:self-center">
-                            2019 • 3 Months
-                        </span>
-                    </div>
-                    <ul class="space-y-4 text-zinc-400 text-sm md:text-base">
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span>Supported high-volume video editing and motion graphics workflows for educational content under senior creative direction.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-lime-400 mt-1">→</span>
-                            <span>Assisted in the production pipeline of engaging 2D animation assets for online digital learning platforms.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+      <div class="card reveal" style="--i:1">
+        <div class="card-media">
+          <img src="Asset/Bra.webp" alt="Logo Designing & Branding Showreel">
+          <span class="card-tag">Branding</span>
         </div>
-    </section>
-
-    <section class="py-16 md:py-24 bg-zinc-950 text-white">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div class="fade-in">
-                <h3 class="uppercase text-lime-400 mb-8 flex items-center gap-3 font-semibold text-lg tracking-wider">
-                    🎓 EDUCATION
-                </h3>
-                
-                <div id="education-list" class="space-y-6">
-                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800/50">
-                        <div class="flex justify-between items-start gap-4 mb-2">
-                            <h4 class="text-lg md:text-xl font-bold text-zinc-100">Bachelor of Fine Arts (BFA) — Applied Arts</h4>
-                            <span class="text-zinc-400 text-xs font-semibold bg-zinc-800 px-3 py-1 rounded-full shrink-0">2021</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-2">Chhatrapati Shahu Ji Maharaj University (CSJMU)</p>
-                        <p class="text-lime-400 text-sm font-medium">Score: 74.5%</p>
-                    </div>
-
-                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800/50">
-                        <div class="flex justify-between items-start gap-4 mb-2">
-                            <h4 class="text-lg md:text-xl font-bold text-zinc-100">Diploma- Advance 3d and animation</h4>
-                            <span class="text-zinc-400 text-xs font-semibold bg-zinc-800 px-3 py-1 rounded-full shrink-0">2021</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-2">MAAC, Kanpur</p>
-                        <p class="text-lime-400 text-sm font-medium">Score: A+</p>
-                    </div>
-
-                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800/50">
-                        <div class="flex justify-between items-start gap-4 mb-2">
-                            <h4 class="text-lg md:text-xl font-bold text-zinc-100">Class 12 — Commerce</h4>
-                            <span class="text-zinc-400 text-xs font-semibold bg-zinc-800 px-3 py-1 rounded-full shrink-0">2017</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-2">Eshwaranand Siksha Niketan, Kanpur (UP Board)</p>
-                        <p class="text-lime-400 text-sm font-medium">Score: 60%</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="fade-in-left">
-                <h3 class="uppercase text-lime-400 mb-8 flex items-center gap-3 font-semibold text-lg tracking-wider">
-                    🏆 ACHIEVEMENTS & CERTIFICATIONS
-                </h3>
-                
-                <div id="achievements-list" class="space-y-4">
-                    <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
-                        <span class="text-lime-400 mt-0.5 text-lg">→</span>
-                        <div>
-                            <h4 class="font-bold text-zinc-100">Gold Medallist — "Clash of Creativity"</h4>
-                            <p class="text-zinc-400 text-sm mt-1">Recognized for Excellence in CG Lighting & Texturing.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
-                        <span class="text-lime-400 mt-0.5 text-lg">→</span>
-                        <div>
-                            <h4 class="font-bold text-zinc-100">Certified 3D Animator</h4>
-                            <p class="text-zinc-400 text-sm mt-1">Credential issued by UNIC (Powered by UNESCO).</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
-                        <span class="text-lime-400 mt-0.5 text-lg">→</span>
-                        <div>
-                            <h4 class="font-bold text-zinc-100">Selected Photography Participant</h4>
-                            <p class="text-zinc-400 text-sm mt-1">Represented and showcased work at MIT Pune & CSJMU Kanpur photography competitions.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800/50 flex items-start gap-4">
-                        <span class="text-lime-400 mt-0.5 text-lg">→</span>
-                        <div>
-                            <h4 class="font-bold text-zinc-100">Sand Art Competitor</h4>
-                            <p class="text-zinc-400 text-sm mt-1">Active event participant in the CSJMU Kanpur Sand Art Competition.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="card-body">
+          <h3>Logo Designing &amp; Branding</h3>
+          <p>Unified corporate identity frameworks, strategic logo architectures, typography guides, and premium scalable assets.</p>
         </div>
-    </section>
-
-    <section id="contact" class="py-20 md:py-32 bg-black border-t border-white/10">
-        <div class="max-w-4xl mx-auto text-center px-6 fade-in scale-in">
-            <div class="text-5xl md:text-7xl heading-font font-bold mb-6">LET'S TALK.</div>
-            <p class="text-xl md:text-2xl text-gray-400 mb-12">Available for freelance projects, collaborations and full-time roles.</p>
-            
-            <a href="mailto:snehilbajajdesign@gmail.com" 
-               class="inline-block bg-lime-400 text-black font-semibold text-base md:text-xl px-8 py-4 md:px-12 md:py-6 rounded-3xl hover:scale-105 transition-transform break-all max-w-full">
-                snehilbajajdesign@gmail.com
-            </a>
+        <div class="card-foot">
+          <a href="https://drive.google.com/drive/folders/14xelnKeeP0ADiFSeoSNyvDWyjUVBUx8B?usp=drive_link" target="_blank" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-    </section>
+      </div>
 
-    <footer class="bg-black pb-6 pt-2 text-center">
-        <p class="text-[10px] sm:text-xs text-zinc-600 font-light tracking-widest uppercase">
-            Website created by Snehil Bajaj
-        </p>
-    </footer>
-    
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        });
+      <div class="card reveal" style="--i:2">
+        <div class="card-media">
+          <img src="Asset/ade.webp" alt="Advertisement Design Showreel">
+          <span class="card-tag">Marketing</span>
+        </div>
+        <div class="card-body">
+          <h3>Advertisement Design</h3>
+          <p>High-engagement promotional commercial video ads, targeted social media creative suites, and performance-optimized visual layouts.</p>
+        </div>
+        <div class="card-foot">
+          <a href="https://drive.google.com/drive/folders/1aCeeBsKssa1maSBOO79zqQELxET6VuAj?usp=drive_link" target="_blank" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
 
-        function initAnimations() {
-            document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
+      <div class="card reveal" style="--i:3">
+        <div class="card-media">
+          <img src="Asset/pro.webp" alt="Product & Packaging Showreel">
+          <span class="card-tag">Product Design</span>
+        </div>
+        <div class="card-body">
+          <h3>Product &amp; Packaging</h3>
+          <p>Advanced 3D hard-surface product models, production-ready label mapping, complex PBR texturing, and realistic studio lighting renders.</p>
+        </div>
+        <div class="card-foot">
+          <a href="https://drive.google.com/drive/folders/1aMCBgaQF8Zx7G-EOT1OGLzDamFzpDNJf?usp=drive_link" target="_blank" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
 
-        function addPortfolioItem(title, category, year, imagePath, description) {
-            const grid = document.getElementById('portfolio-grid');
-            const card = document.createElement('div');
-            card.className = 'portfolio-card fade-in group bg-zinc-900 rounded-3xl overflow-hidden flex flex-col justify-between h-full';
-            card.innerHTML = `
-                <div>
-                    <div class="relative h-48 sm:h-64 md:h-72">
-                        <img src="${imagePath}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full">${category} • ${year}</div>
-                    </div>
-                    <div class="p-6 md:p-8 pb-4">
-                        <h3 class="text-xl md:text-2xl font-semibold mb-2">${title}</h3>
-                        <p class="text-gray-400 text-sm">${description}</p>
-                    </div>
-                </div>
-                <div class="p-6 md:p-8 pt-0">
-                    <button class="w-full inline-flex items-center justify-center gap-2 bg-lime-400 text-black font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-lime-300 transition-colors">
-                        View More <span>→</span>
-                    </button>
-                </div>
-            `;
-            grid.appendChild(card);
-            observer.observe(card);
-        }
+      <div class="card reveal" style="--i:4">
+        <div class="card-media">
+          <img src="Asset/inv.webp" alt="Invitation Cards Showreel">
+          <span class="card-tag">Print &amp; Digital</span>
+        </div>
+        <div class="card-body">
+          <h3>Invitation Cards</h3>
+          <p>Bespoke dynamic digital invitations, layout curation for luxury stationery systems, and traditional-modern crossover illustration aesthetics.</p>
+        </div>
+        <div class="card-foot">
+          <a href="https://drive.google.com/drive/folders/1WUdI0ZFVlF4yliUxvvG-YmO4kWoJ81nu?usp=drive_link" target="_blank" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
 
-        window.onload = function() {
-            initAnimations();
-        };
+    </div>
+  </div>
+</section>
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const marquee = document.getElementById("logo-marquee");
-            if (marquee) {
-                const clone = marquee.cloneNode(true);
-                clone.removeAttribute("id"); 
-                marquee.parentNode.appendChild(clone);
-            }
-        });
-    </script>
+<section id="clients" class="clients">
+  <div class="wrap">
+    <h2 class="section-title reveal" style="text-align:center;">Trusted By</h2>
+  </div>
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-group">
+      <img src="Asset/mm.webp" alt="Mado Marketing">
+      <img src="Asset/sd.webp" alt="Satvic Drinks">
+      <img src="Asset/sb.webp" alt="Saroj Enterprises">
+      <img src="Asset/gvi.webp" alt="GVI">
+      <img src="Asset/ams.webp" alt="Ayush Marketing Solutions">
+      <img src="Asset/gapk.webp" alt="GAPK">
+      <img src="Asset/om.webp" alt="OM Enterprises">
+      <img src="Asset/si.webp" alt="Shubh Invites">
+      <img src="Asset/pf.webp" alt="Polyframe">
+    </div>
+  </div>
+</section>
+
+<section id="career" class="career">
+  <div class="wrap">
+    <div class="eyebrow reveal">Experience</div>
+    <h2 class="section-title reveal" style="margin:18px 0 50px;">Career</h2>
+    <div class="timeline">
+
+      <div class="job reveal">
+        <div class="job-head">
+          <div>
+            <h3>Polyframe Academy of Arts and Cinematics</h3>
+            <div class="job-role">Owner &amp; Senior Teacher — 3D Art &amp; Animation</div>
+          </div>
+          <span class="job-period">2020 – Present</span>
+        </div>
+        <ul>
+          <li>Deliver advanced curriculum covering motion graphics, non-linear video editing, UI/UX asset creation, and comprehensive brand identity systems.</li>
+          <li>Instruct students in hard-surface 3D product modeling, UV unwrapping, and PBR texturing workflows tailored for industry-standard pipelines.</li>
+          <li>Direct end-to-end portfolio development pipelines, mentoring emerging talent to transform conceptual classroom theory into commercial, industry-ready digital media assets.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-head">
+          <div>
+            <h3>Freelance Design &amp; Animation Projects</h3>
+            <div class="job-role">Senior Designer, Editor &amp; Lead Product Designer</div>
+          </div>
+          <span class="job-period">2020 – Present</span>
+        </div>
+        <ul>
+          <li><strong>Sattvic Drinks:</strong> Directed comprehensive product design strategies and led the creative execution for corporate brand identity and premium packaging visuals.</li>
+          <li><strong>Mado Marketing / Ads Agency Hub / Globistic View India:</strong> Spearheaded scalable visual design frameworks and oversaw post-production video editing workflows for high-conversion client marketing campaigns and promotional branded assets.</li>
+          <li><strong>Jinagam Prabhavna Creations:</strong> Contributed key 3D animation and dynamic VFX simulation passes as Junior 3D Animator &amp; FX Artist for the independent film "Tap Ki Mahima," alongside developing brand-aligned marketing poster layouts and high-impact advertisement material designs.</li>
+          <li><strong>Saroj Enterprises:</strong> Engineered corporate logo designs, targeted advertising assets, brand collateral typography, and distinct product identity systems.</li>
+          <li><strong>Om Enterprises:</strong> Produced high-engagement Social Media Marketing promotional assets, print-ready pamphlets, multi-page brochure layouts, and high-conversion commercial video ads.</li>
+          <li><strong>Shubh Invites:</strong> Conceptualized and executed bespoke digital invitation and wedding stationery designs, establishing cohesive brand architecture and custom logos.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-head">
+          <div>
+            <h3>Exam Taiyaari</h3>
+            <div class="job-role">Junior Editor &amp; Animator (Internship)</div>
+          </div>
+          <span class="job-period">2019 · 3 Months</span>
+        </div>
+        <ul>
+          <li>Supported high-volume video editing and motion graphics workflows for educational content under senior creative direction.</li>
+          <li>Assisted in the production pipeline of engaging 2D animation assets for online digital learning platforms.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="edu-section">
+  <div class="wrap edu-grid">
+    <div class="reveal-left">
+      <h3 class="eyebrow"><i class="fa-solid fa-graduation-cap"></i>&nbsp; Education</h3>
+      <div style="margin-top:24px;">
+        <div class="edu-card">
+          <div class="row">
+            <h4>Bachelor of Fine Arts (BFA) — Applied Arts</h4>
+            <span class="yr">2021</span>
+          </div>
+          <div class="school">Chhatrapati Shahu Ji Maharaj University (CSJMU)</div>
+          <div class="score">Score: 74.5%</div>
+        </div>
+        <div class="edu-card">
+          <div class="row">
+            <h4>Diploma — Advance 3D and Animation</h4>
+            <span class="yr">2021</span>
+          </div>
+          <div class="school">MAAC, Kanpur</div>
+          <div class="score">Score: A+</div>
+        </div>
+        <div class="edu-card">
+          <div class="row">
+            <h4>Class 12 — Commerce</h4>
+            <span class="yr">2017</span>
+          </div>
+          <div class="school">Eshwaranand Siksha Niketan, Kanpur (UP Board)</div>
+          <div class="score">Score: 60%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal-right">
+      <h3 class="eyebrow"><i class="fa-solid fa-trophy"></i>&nbsp; Achievements &amp; Certifications</h3>
+      <div style="margin-top:24px;">
+        <div class="ach-card">
+          <i class="fa-solid fa-arrow-right"></i>
+          <div>
+            <h4>Gold Medallist — "Clash of Creativity"</h4>
+            <p>Recognized for excellence in CG lighting &amp; texturing.</p>
+          </div>
+        </div>
+        <div class="ach-card">
+          <i class="fa-solid fa-arrow-right"></i>
+          <div>
+            <h4>Certified 3D Animator</h4>
+            <p>Credential issued by UNIC (Powered by UNESCO).</p>
+          </div>
+        </div>
+        <div class="ach-card">
+          <i class="fa-solid fa-arrow-right"></i>
+          <div>
+            <h4>Selected Photography Participant</h4>
+            <p>Represented and showcased work at MIT Pune &amp; CSJMU Kanpur photography competitions.</p>
+          </div>
+        </div>
+        <div class="ach-card">
+          <i class="fa-solid fa-arrow-right"></i>
+          <div>
+            <h4>Sand Art Competitor</h4>
+            <p>Active event participant in the CSJMU Kanpur Sand Art Competition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap reveal-scale">
+    <div class="eyebrow" style="justify-content:center;">Get In Touch</div>
+    <h2 style="margin-top:18px;">Let's Talk.</h2>
+    <p>Available for freelance projects, collaborations and full-time roles.</p>
+    <a href="mailto:snehilbajajdesign@gmail.com" class="contact-link">
+      <i class="fa-solid fa-paper-plane"></i> snehilbajajdesign@gmail.com
+    </a>
+    <div class="contact-meta">
+      <a href="https://wa.me/916388114814" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="mailto:snehilbajajdesign@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+      <span><i class="fa-solid fa-location-dot"></i> Kanpur, India</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; <span id="year"></span> Snehil Bajaj. All rights reserved.
+</footer>
+
+<script>
+(function(){
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // header hide/show on scroll
+  var header = document.getElementById('site-header');
+  var lastY = window.scrollY;
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    if (y > lastY && y > 140) header.classList.add('hide');
+    else header.classList.remove('hide');
+    lastY = y;
+  }, { passive:true });
+
+  // mobile nav
+  var burger = document.getElementById('burger');
+  var mobileNav = document.getElementById('mobileNav');
+  var scrim = document.getElementById('scrim');
+  function toggleNav(force){
+    var open = typeof force === 'boolean' ? force : !mobileNav.classList.contains('open');
+    burger.classList.toggle('open', open);
+    mobileNav.classList.toggle('open', open);
+    scrim.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){ toggleNav(); });
+  scrim.addEventListener('click', function(){ toggleNav(false); });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ toggleNav(false); });
+  });
+
+  // scroll reveal
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .job').forEach(function(el){
+    observer.observe(el);
+  });
+
+  // marquee: duplicate group for seamless loop
+  var track = document.getElementById('marqueeTrack');
+  if (track){
+    var clone = track.innerHTML;
+    track.innerHTML += clone;
+  }
+})();
+</script>
+
 </body>
 </html>

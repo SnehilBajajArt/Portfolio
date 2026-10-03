@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -384,12 +385,97 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
   .hero-frame{ aspect-ratio:1/1; }
 }
 
+
+/* ============ SEQUENCE / POLISH ============ */
+body > header,
+body > .scrim,
+body > nav,
+body > section,
+body > footer{ position:relative; z-index:2; }
+body::before{ z-index:6; }
+.scroll-progress{
+  position:fixed; top:0; left:0; height:2px; width:0;
+  background:linear-gradient(90deg, var(--rust), var(--accent));
+  z-index:120; pointer-events:none;
+}
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--accent); outline-offset:3px;
+}
+nav.primary a.active{ color:var(--ink); }
+nav.primary a.active::after{ width:100%; }
+
+.hero{
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(200,255,91,.12), transparent 60%),
+    radial-gradient(640px 420px at 0% 100%, rgba(255,122,69,.09), transparent 62%),
+    linear-gradient(180deg, rgba(11,11,12,.15) 0%, rgba(11,11,12,.28) 55%, rgba(11,11,12,.82) 100%);
+}
+.about, .clients, .edu-section{
+  background:linear-gradient(180deg, rgba(17,17,19,.42), rgba(11,11,12,.28) 48%, rgba(17,17,19,.5));
+  border-top-color:transparent;
+  border-bottom-color:transparent;
+}
+.portfolio, .career{
+  background:linear-gradient(180deg, rgba(11,11,12,.15), rgba(11,11,12,.38) 50%, rgba(11,11,12,.62));
+}
+.contact{
+  background:linear-gradient(180deg, rgba(11,11,12,.2), rgba(11,11,12,.72));
+}
+.reel-join{
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+  margin:0 0 42px; padding-bottom:14px;
+  border-bottom:1px solid rgba(200,255,91,.22);
+  font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-dim);
+}
+.reel-join b{ color:var(--accent); font-weight:700; letter-spacing:.18em; }
+.about, .portfolio, .clients, .career, .edu-section{ padding-top:88px; padding-bottom:96px; }
+.card{ position:relative; }
+.card::before, .card::after{
+  content:""; position:absolute; width:16px; height:16px; z-index:2;
+  border:1.5px solid transparent; transition:border-color .35s ease; pointer-events:none;
+}
+.card::before{ top:10px; left:10px; border-top-color:transparent; border-left-color:transparent; }
+.card::after{ bottom:10px; right:10px; }
+.card:hover::before{ border-top-color:var(--accent); border-left-color:var(--accent); }
+.card:hover::after{ border-bottom-color:var(--accent); border-right-color:var(--accent); }
+.card-media::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(to top, rgba(11,11,12,.62), transparent 52%);
+}
+.card-body h3{ line-height:1.35; letter-spacing:-.015em; }
+.card.is-video .card-tag{ background:rgba(11,11,12,.82); }
+.contact .ghost-word{
+  position:absolute; left:50%; top:42%; transform:translate(-50%,-50%);
+  font-family:var(--display); font-size:clamp(5.5rem, 18vw, 13rem);
+  letter-spacing:.04em; color:transparent; -webkit-text-stroke:1px rgba(200,255,91,.18);
+  pointer-events:none; white-space:nowrap; z-index:0;
+}
+.contact .wrap{ position:relative; z-index:1; }
+.hero-meta{
+  display:flex; gap:22px; margin-top:28px; flex-wrap:wrap;
+  font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-dim);
+}
+.hero-meta span b{ color:var(--accent); font-weight:600; }
+@media (max-width: 640px){
+  .reel-join span.dim{ display:none; }
+  .about, .portfolio, .clients, .career, .edu-section{ padding-top:72px; padding-bottom:72px; }
+  }
+
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
 }
 </style>
 </head>
 <body>
+
+<div class="world-grid" aria-hidden="true">
+  <div class="world-grid__horizon"></div>
+  <div class="world-grid__viewport">
+    <div class="world-grid__plane" id="gridPlane"></div>
+  </div>
+  <div class="world-grid__veil"></div>
+</div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <header id="site-header">
   <div class="header-inner">
@@ -429,6 +515,7 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
       <div class="hero-status"><span class="dot-pulse"></span> Available for new projects</div>
       <h1 class="name-hover"><span class="stroke" id="word-snehil">SNEHIL</span><br><span id="word-bajaj">BAJAJ</span></h1>
       <p class="hero-role">2D/3D Animator · Motion Designer · <b>Visual Storyteller</b> turning concepts into polished, industry-ready motion and brand assets.</p>
+      <div class="hero-meta"><span><b>01</b> Hero</span><span>Kanpur, India</span><span id="heroTc">TC 00:00:00:00</span></div>
       <div class="hero-actions">
         <a href="#portfolio" class="btn-fill">View Work <i class="fa-solid fa-arrow-right"></i></a>
         <a href="#contact" class="btn-outline">Let's Talk</a>
@@ -438,7 +525,7 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
       <div class="hero-frame">
         <span class="corner tl"></span><span class="corner br"></span>
         <img src="Asset/profile.webp" alt="Portrait of Snehil Bajaj">
-        <div class="frame-tag"><span>● REC</span> CUT.01 — PORTFOLIO</div>
+        <div class="frame-tag"><span>● REC</span> <span id="timecode">CUT.01 — PORTFOLIO</span></div>
       </div>
     </div>
   </div>
@@ -446,7 +533,9 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
 </section>
 
 <section id="about" class="about">
-  <div class="wrap about-grid">
+  <div class="wrap">
+    <div class="reel-join"><b>02 — About</b><span class="dim">Profile / Capabilities</span></div>
+    <div class="about-grid">
     <div class="reveal-left">
       <div class="eyebrow">Profile</div>
       <h2 class="section-title" style="margin-top:18px;">About Me</h2>
@@ -491,31 +580,33 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
 <section id="portfolio" class="portfolio">
   <div class="wrap">
+    <div class="reel-join"><b>03 — Showreel</b><span class="dim">Selected work</span></div>
     <div class="section-head reveal">
       <div>
         <div class="eyebrow">Showreels</div>
         <h2 class="section-title" style="margin-top:18px;">Selected Work</h2>
       </div>
-      <p>A curated set of motion, branding and product showreels spanning 3D animation, advertising and packaging design.</p>
+      <p>A curated set of motion, branding, product and interface work — one reel from 3D lighting through identity, campaigns and UI.</p>
     </div>
     <div class="grid-3" id="portfolio-grid">
 
-      <div class="card reveal" style="--i:0">
+      <div class="card reveal is-video" style="--i:0">
         <div class="card-media">
-          <img src="Asset/3D.webp" alt="3D Animation Showreel">
+          <img src="Asset/3D.webp" alt="3D CG Lighting, Animation, and Compositing Showreel">
           <span class="card-tag">3D &amp; VFX</span>
         </div>
         <div class="card-body">
-          <h3>3D Animation Showreel</h3>
-          <p>Advanced character animation pipelines, dynamic VFX simulation passes, and hard-surface cinematic environment designs.</p>
+          <h3>3D CG Lighting, Animation, and Compositing Showreel</h3>
+          <p>Lighting, animation and compositing — character and hard-surface shots, VFX passes and cinematic environments, cut together as one reel.</p>
         </div>
         <div class="card-foot">
-          <a href="https://drive.google.com/drive/folders/1UF0ZpI_F7zuRWk5SpzBFqq1PmTM64V3V?usp=drive_link" target="_blank" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="https://www.youtube.com/watch?v=CTPxjN0-gvY" target="_blank" rel="noopener noreferrer" class="card-link">Watch Showreel <i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
 
@@ -571,7 +662,21 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
           <p>Bespoke dynamic digital invitations, layout curation for luxury stationery systems, and traditional-modern crossover illustration aesthetics.</p>
         </div>
         <div class="card-foot">
-          <a href="https://drive.google.com/drive/folders/1WUdI0ZFVlF4yliUxvvG-YmO4kWoJ81nu?usp=drive_link" target="_blank" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="https://drive.google.com/drive/folders/1WUdI0ZFVlF4yliUxvvG-YmO4kWoJ81nu?usp=drive_link" target="_blank" rel="noopener noreferrer" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="card reveal" style="--i:5">
+        <div class="card-media">
+          <img src="Asset/uiux.webp" alt="UI/UX design portfolio">
+          <span class="card-tag">UI / UX</span>
+        </div>
+        <div class="card-body">
+          <h3>UI / UX Design</h3>
+          <p>Interface systems and product flows — screen layouts, hierarchy and interaction design shaped with the same frame-precise visual language as the motion work.</p>
+        </div>
+        <div class="card-foot">
+          <a href="https://drive.google.com/drive/folders/1dctMk-LkRFR_oiD1MZ_4FAgYop0q3oPT" target="_blank" rel="noopener noreferrer" class="card-link">View More <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
@@ -581,6 +686,7 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
 
 <section id="clients" class="clients">
   <div class="wrap">
+    <div class="reel-join"><b>04 — Clients</b><span class="dim">Trusted by</span></div>
     <h2 class="section-title reveal" style="text-align:center;">Trusted By</h2>
   </div>
   <div class="marquee-track" id="marqueeTrack">
@@ -600,6 +706,7 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
 
 <section id="career" class="career">
   <div class="wrap">
+    <div class="reel-join"><b>05 — Career</b><span class="dim">Experience</span></div>
     <div class="eyebrow reveal">Experience</div>
     <h2 class="section-title reveal" style="margin:18px 0 50px;">Career</h2>
     <div class="timeline">
@@ -656,7 +763,9 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
 </section>
 
 <section class="edu-section">
-  <div class="wrap edu-grid">
+  <div class="wrap">
+    <div class="reel-join"><b>06 — Record</b><span class="dim">Education &amp; awards</span></div>
+    <div class="edu-grid">
     <div class="reveal-left">
       <h3 class="eyebrow"><i class="fa-solid fa-graduation-cap"></i>&nbsp; Education</h3>
       <div style="margin-top:24px;">
@@ -720,11 +829,14 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
 <section id="contact" class="contact">
+  <div class="ghost-word" aria-hidden="true">CONTACT</div>
   <div class="wrap reveal-scale">
+    <div class="reel-join" style="text-align:left;"><b>07 — Contact</b><span class="dim">Available</span></div>
     <div class="eyebrow" style="justify-content:center;">Get In Touch</div>
     <h2 style="margin-top:18px;">Let's Talk.</h2>
     <p>Available for freelance projects, collaborations and full-time roles.</p>
@@ -794,6 +906,49 @@ footer{ border-top:1px solid var(--line); padding:30px 0; text-align:center; col
   if (track){
     var clone = track.innerHTML;
     track.innerHTML += clone;
+  }
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var plane = document.getElementById('gridPlane');
+  var bar = document.getElementById('scrollProgress');
+  var heroTc = document.getElementById('heroTc');
+  var t0 = performance.now();
+
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function paintTc(now){
+    var frames = Math.floor((now - t0) / (1000 / 24));
+    var f = frames % 24;
+    var total = Math.floor(frames / 24);
+    var s = total % 60;
+    var m = Math.floor(total / 60) % 60;
+    var h = Math.floor(total / 3600);
+    if (heroTc) heroTc.textContent = 'TC ' + pad(h) + ':' + pad(m) + ':' + pad(s) + ':' + pad(f);
+  }
+
+  function onScroll(){
+    var y = window.scrollY;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = ((max > 0 ? y / max : 0) * 100) + '%';
+    if (plane && !reduce){
+      plane.style.transform = 'rotateX(76deg) translateY(' + (y * 0.12) + 'px)';
+    }
+    var pos = y + 140;
+    var current = '';
+    ['about','portfolio','clients','career','contact'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= pos) current = id;
+    });
+    document.querySelectorAll('nav.primary a').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  if (!reduce){
+    (function loop(now){ paintTc(now); requestAnimationFrame(loop); })(t0);
+  } else {
+    paintTc(t0);
   }
 })();
 </script>

@@ -1,31 +1,67 @@
-/* Custom Fine-Tuned Visual Aesthetics */
+/* Perspective grid — finishes the earlier static micro-grid.
+   A CSS plane in perspective; background-position scrolls the
+   lines from the horizon toward the camera. */
 
-/* Smooth alignment transitions */
-html {
-    scroll-behavior: smooth;
+.world-grid{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
 }
-
-/* Linear Infinite Marquee Animations */
-@keyframes continuousLoop {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-33.3333%); }
+.world-grid__viewport{
+  position:absolute;
+  left:-50%;
+  width:200%;
+  top:58%;
+  height:80%;
+  perspective:320px;
+  perspective-origin:50% 0%;
+  overflow:hidden;
 }
-
-.marquee-animation {
-    display: flex;
-    width: max-content;
-    animation: continuousLoop 25s linear infinite;
+.world-grid__plane{
+  position:absolute;
+  left:5%;
+  width:90%;
+  height:240%;
+  top:-2%;
+  transform-origin:center top;
+  transform:rotateX(76deg);
+  background-image:
+    linear-gradient(to right, rgba(200,255,91,.55) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(200,255,91,.5) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(200,255,91,.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200,255,91,.16) 1px, transparent 1px);
+  background-size:240px 240px, 240px 240px, 60px 60px, 60px 60px;
+  animation:gridRecede 3.2s linear infinite;
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 14%, #000 78%, transparent 100%);
+  mask-image:linear-gradient(to bottom, transparent 0%, #000 14%, #000 78%, transparent 100%);
 }
-
-.marquee-wrapper {
-    display: flex;
-    overflow: hidden;
-    width: 100%;
+.world-grid__horizon{
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:58%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(200,255,91,.85), rgba(255,122,69,.7), transparent);
+  box-shadow:0 0 26px rgba(200,255,91,.4);
+  opacity:.85;
 }
-
-/* Micro-Grid Background Overlay */
-.grid-bg {
-    background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
+.world-grid__veil{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(11,11,12,.94) 0%, rgba(11,11,12,.78) 42%, rgba(11,11,12,.2) 60%, rgba(11,11,12,.72) 100%),
+    radial-gradient(900px 420px at 70% 38%, rgba(200,255,91,.06), transparent 70%);
+}
+@keyframes gridRecede{
+  from{ background-position:0 0, 0 0, 0 0, 0 0; }
+  to{ background-position:0 240px, 0 240px, 0 240px, 0 240px; }
+}
+@media (max-width: 640px){
+  .world-grid__viewport{ top:64%; }
+  .world-grid__horizon{ top:64%; }
+}
+@media (prefers-reduced-motion: reduce){
+  .world-grid__plane{ animation:none; }
 }
